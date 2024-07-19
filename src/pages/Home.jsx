@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReferPage from './ReferPage';
 import ReferModal from './ReferModal';
+import axios from "axios";
+import { REACT_IP, SERVER_PORT } from '../services/common';
 
 const Home = () => {
     const [referalDetails, setReferalDetails] = useState({
@@ -10,9 +12,23 @@ const Home = () => {
     })
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const onReferFormSubmitHandler = (e) => {
+    const onReferFormSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log(referalDetails)
+        try {
+            await axios.post(`http://${REACT_IP}:${SERVER_PORT}/api/referrals`,
+                { details: referalDetails }
+            )
+            setReferalDetails((prev) => ({
+                ...prev,
+                name: "",
+                email: "",
+                message: ""
+            }))
+            setIsModalOpen(false);
+        }
+        catch (error) {
+            console.log(error);
+        }
         setIsModalOpen(false)
     }
 
