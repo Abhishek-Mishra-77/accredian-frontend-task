@@ -1,2 +1,1 @@
-export const REACT_IP = "localhost";
-export const SERVER_PORT = "5000";
+export const SERVER_PORT = "https://accredian-backend-task-jg0v.onrender.com";

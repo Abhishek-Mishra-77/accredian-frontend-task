@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReferPage from './ReferPage';
 import ReferModal from './ReferModal';
 import axios from "axios";
-import { REACT_IP, SERVER_PORT } from '../services/common';
+import { SERVER_PORT } from '../services/common';
 import { toast } from 'react-toastify';
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
     const onReferFormSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://${REACT_IP}:${SERVER_PORT}/api/referrals`,
+            await axios.post(`${SERVER_PORT}/api/referrals`,
                 { details: referalDetails }
             )
             setReferalDetails((prev) => ({
