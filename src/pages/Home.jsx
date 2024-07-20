@@ -3,6 +3,7 @@ import ReferPage from './ReferPage';
 import ReferModal from './ReferModal';
 import axios from "axios";
 import { REACT_IP, SERVER_PORT } from '../services/common';
+import { toast } from 'react-toastify';
 
 const Home = () => {
     const [referalDetails, setReferalDetails] = useState({
@@ -24,9 +25,11 @@ const Home = () => {
                 email: "",
                 message: ""
             }))
+            toast.success("Successfully referrals send.")
             setIsModalOpen(false);
         }
         catch (error) {
+            toast.error("Something went wrong.")
             console.log(error);
         }
         setIsModalOpen(false)
